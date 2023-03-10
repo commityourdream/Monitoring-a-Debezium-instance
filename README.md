@@ -23,3 +23,26 @@ Open a web browser and got to the Grafana UI at http://localhost:3000. Login int
 ![Screenshot 2023-03-10 at 4 47 15 PM](https://user-images.githubusercontent.com/42512407/224322178-edae9dd3-e86d-4ad1-951a-bf5e76c5b81a.jpg)
 ![Screenshot 2023-03-10 at 4 41 43 PM](https://user-images.githubusercontent.com/42512407/224322183-b2a90b50-ce91-4bd2-b98e-4ba30b9dc7ca.jpg)
 ![Before-Deleting-Source Connector ](https://user-images.githubusercontent.com/42512407/224322186-bfe50ff3-8ebf-4f81-8aa2-db5d9a06e8cf.jpg)
+
+
+
+
+1. what happens if you DELETE your source connector and CREATE it again - ( does it perform snapshot again ? or it only capture streaming changes ?
+
+
+   I deleted the source connector( curl -X DELETE http://localhost:8083/connectors/inventory-connector) and I have updated one record and observed that the    record is not available in Kafka (seen in kafdrop and grafana dashboard)
+
+   Again I created a source connector and inserted one record then I have observed that previous and newly added records are available and the event count    increased by 2.
+
+
+
+
+2. What will happen if you restart your KAFKA - and make change in your DB -- does your source connector works fine ?
+
+   I restarted the KAFKA container and inserted one record then i have observed that records are available in Kafka and event count increased by 1 (seen in    kafdrop and grafana dashboard)
+
+
+
+3. What will happend if restart kafka connect conatiner  and make change in source -- does your source connector works fine ?
+
+   I restarted KAFKA connect container and inserted one record then I have observerd that records are available in Kafka and event count increased by 1        (seen in kafdrop and grafana dashboard)
